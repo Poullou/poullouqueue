@@ -2,10 +2,10 @@ require 'test_helper'
 
 describe PoullouStack do
   before do
-    @stack = PoullouStack.new
+    @stack = PoullouStack::Stack.new
   end
 
-  describe 'Stack properties' do
+  describe 'Stack inteface' do
     it 'is empty on instantiation' do
       @stack.empty?.must_equal true
       @stack.size.must_equal 0

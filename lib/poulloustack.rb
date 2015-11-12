@@ -1,22 +1,3 @@
-class PoullouStack
+require 'poulloustack/stack'
 
-  def initialize
-    @stack = []
-  end
-
-  def push(*elements)
-    @stack.push(*elements)
-  end
-
-  def pull(amount = nil)
-    amount.nil? ? @stack.shift : @stack.shift(amount)
-  end
-
-  def size
-    @stack.size
-  end
-
-  def empty?
-    @stack.empty?
-  end
-end
+module PoullouStack; end
