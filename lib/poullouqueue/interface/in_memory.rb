@@ -1,27 +1,27 @@
-module PoullouStack
+module PoullouQueue
   module Interface
     module InMemory
 
       def push(*elements)
-        @stack.push(*elements)
+        @queue.push(*elements)
       end
 
       def pull(amount = nil)
-        amount.nil? ? @stack.shift : @stack.shift(amount)
+        amount.nil? ? @queue.shift : @queue.shift(amount)
       end
 
       def size
-        @stack.size
+        @queue.size
       end
 
       def empty?
-        @stack.empty?
+        @queue.empty?
       end
 
       private
 
       def initialize_interface
-        @stack = []
+        @queue = []
       end
     end
   end

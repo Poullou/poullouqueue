@@ -1,5 +1,5 @@
-module PoullouStack
-  class Stack
+module PoullouQueue
+  class Queue
     include Helper::Repetition
 
     def initialize(options = {})

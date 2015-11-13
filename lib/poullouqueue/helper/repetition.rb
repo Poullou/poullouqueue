@@ -1,4 +1,4 @@
-module PoullouStack
+module PoullouQueue
   module Helper
     module Repetition
       def every(secondes, condition = nil, &block)
