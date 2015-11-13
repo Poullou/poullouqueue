@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe PoullouQueue do
   before do
-    @queue = PoullouQueue::Queue.new(interface: :in_memory)
+    @queue = PoullouQueue::Queue.new
   end
 
   describe 'In memory interface' do

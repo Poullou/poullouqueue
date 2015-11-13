@@ -3,22 +3,27 @@ module PoullouQueue
     include Helper::Repetition
 
     def initialize(options = {})
-      @options = options
+      @options = default_options.merge(options)
       setup_interface
       initialize_interface
     end
 
     private
 
-    def setup_interface
-      raise "Unknow interface #{@options[:interface]}" unless available_interfaces.keys.include?(@options[:interface])
-      self.class.include(available_interfaces[@options[:interface]])
+    def default_options
+      {
+        interface: :in_memory
+      }
     end
 
-    def available_interfaces
-      @interfaces ||= {
+    def setup_interface
+      self.class.include(select_interface(@options[:interface]))
+    end
+
+    def select_interface(name)
+      {
         in_memory: Interface::InMemory
-      }
+      }[name]
     end
   end
 end
