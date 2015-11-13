@@ -1,6 +1,7 @@
 module PoullouStack
   class Stack
-    
+    include Helper::Repetition
+
     def initialize(options = {})
       @options = options
       @stack = []

@@ -41,4 +41,22 @@ describe PoullouStack do
       pulled_elments.size.must_equal 2
     end
   end
+
+  describe 'Repetition helper' do
+    it 'can repeat execution' do
+      @stack.every(0.005) { |stack| stack.push('pouet') }
+      sleep(0.01)
+
+      @stack.empty?.must_equal false
+      @stack.size.must_be :>, 1
+    end
+
+    it 'can repeat execution when condition provided is valid' do
+      @stack.every(0.005, ->(stack){ stack.size < 1 }) { |stack| stack.push('poulou') }
+      sleep(0.01)
+
+      @stack.empty?.must_equal false
+      @stack.size.must_equal 1
+    end
+  end
 end
