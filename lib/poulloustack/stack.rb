@@ -4,23 +4,21 @@ module PoullouStack
 
     def initialize(options = {})
       @options = options
-      @stack = []
+      setup_interface
+      initialize_interface
     end
 
-    def push(*elements)
-      @stack.push(*elements)
+    private
+
+    def setup_interface
+      raise "Unknow interface #{@options[:interface]}" unless available_interfaces.keys.include?(@options[:interface])
+      self.class.include(available_interfaces[@options[:interface]])
     end
 
-    def pull(amount = nil)
-      amount.nil? ? @stack.shift : @stack.shift(amount)
-    end
-
-    def size
-      @stack.size
-    end
-
-    def empty?
-      @stack.empty?
+    def available_interfaces
+      @interfaces ||= {
+        in_memory: Interface::InMemory
+      }
     end
   end
 end

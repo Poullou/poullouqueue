@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe PoullouStack do
   before do
-    @stack = PoullouStack::Stack.new
+    @stack = PoullouStack::Stack.new(interface: :in_memory)
   end
 
   describe 'Stack inteface' do
