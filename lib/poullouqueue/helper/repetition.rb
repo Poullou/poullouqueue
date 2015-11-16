@@ -1,8 +1,8 @@
 module PoullouQueue
   module Helper
     module Repetition
-      def every(secondes, condition = nil, &block)
-        in_new_thread{ with_rescue{ repeat(secondes, condition, block) }}
+      def every(seconds, condition = nil, &block)
+        in_new_thread{ with_rescue{ repeat(seconds, condition, block) }}
       end
 
       private
@@ -14,14 +14,14 @@ module PoullouQueue
       def with_rescue
         yield
       rescue => e
-        @options[:logger].error(e.message)
-        @options[:logger].error(e.backtrace)
+        error(e.message)
+        error(e.backtrace)
       end
 
-      def repeat(secondes, condition, block)
+      def repeat(seconds, condition, block)
         loop do
           block.call(self) if condition_valid?(condition)
-          sleep(secondes)
+          sleep(seconds)
         end
       end
 
