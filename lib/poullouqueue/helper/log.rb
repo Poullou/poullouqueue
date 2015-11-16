@@ -1,3 +1,5 @@
+require 'logger'
+
 module PoullouQueue
   module Helper
     module Log
@@ -30,6 +32,11 @@ module PoullouQueue
 
       def log(method, message)
         @logger.send(method, "PoullouQueue - #{message}")
+      end
+
+      def default_logger
+        log = Logger.new(STDOUT)
+        log.level = Logger::WARN
       end
     end
   end

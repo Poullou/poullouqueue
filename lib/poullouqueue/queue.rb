@@ -1,5 +1,3 @@
-require 'logger'
-
 module PoullouQueue
   class Queue
     include Helper::Repetition, Helper::Log, Interface::Setup
@@ -18,11 +16,6 @@ module PoullouQueue
         interface: :in_memory,
         logger: default_logger
       }
-    end
-
-    def default_logger
-      log = Logger.new(STDOUT)
-      log.level = Logger::WARN
     end
   end
 end
