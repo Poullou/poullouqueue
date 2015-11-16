@@ -2,11 +2,11 @@ require 'logger'
 
 module PoullouQueue
   class Queue
-    include Helper::Repetition, Helper::Log
+    include Helper::Repetition, Helper::Log, Interface::Setup
 
     def initialize(options = {})
       @options = default_options.merge(options)
-      setup_interface
+      setup_interface(@options[:interface])
       initialize_interface
       initialize_logger(@options[:logger])
     end
@@ -18,16 +18,6 @@ module PoullouQueue
         interface: :in_memory,
         logger: default_logger
       }
-    end
-
-    def setup_interface
-      self.class.include(select_interface(@options[:interface]))
-    end
-
-    def select_interface(name)
-      {
-        in_memory: Interface::InMemory
-      }[name]
     end
 
     def default_logger

@@ -41,4 +41,12 @@ describe 'Interface' do
       pulled_elments.size.must_equal 2
     end
   end
+
+  describe 'Custom interface' do
+    it 'can use custom interface' do
+      @queue = PoullouQueue::Queue.new(interface: CustomInterface)
+
+      @queue.respond_to?(:custom_interface?).must_equal true
+    end
+  end
 end
