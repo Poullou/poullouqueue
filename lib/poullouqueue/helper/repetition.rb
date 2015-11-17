@@ -8,7 +8,8 @@ module PoullouQueue
       private
 
       def in_new_thread
-        @repetiton_thread = Thread.new{ yield }
+        thread = Thread.new{ yield }
+        thread.abort_on_exception = true
       end
 
       def with_rescue
@@ -16,6 +17,7 @@ module PoullouQueue
       rescue => e
         error(e.message)
         error(e.backtrace)
+        raise e
       end
 
       def repeat(seconds, condition, block)

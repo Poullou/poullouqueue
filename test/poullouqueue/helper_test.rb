@@ -47,10 +47,13 @@ describe 'Helpers' do
     end
 
     it 'can log errors on exceptions' do
+      @queue.stubs(:error)
       @queue.expects(:error).once.with('pouet')
 
-      @queue.every(0.005) { |queue| raise 'pouet' }
-      sleep(0.005)
+      proc {
+        @queue.every(0.005) { |queue| raise 'pouet' }
+        sleep(0.01)
+      }.must_raise RuntimeError
     end
   end
 end
