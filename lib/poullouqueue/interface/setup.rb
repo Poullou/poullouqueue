@@ -5,7 +5,7 @@ module PoullouQueue
       private
 
       def setup_interface(interface)
-        self.class.include(select_interface(interface))
+        self.extend(select_interface(interface))
       end
 
       def select_interface(interface)
