@@ -28,8 +28,18 @@ It is possible to use available interfaces such as InMemory interface :
 
 Available interfaces :
 * in_memory
+* redis
 
 In memory interface is set by default.
+
+#### Redis
+
+To configure Redis, use hash with connection to connect database and key to retrieve the list in the database.
+
+  ```ruby
+  configuration = { connection: { host: 'localhost', port: 6380, db: 1}, key: 'pouet' }
+  queue = PoullouQueue::Queue.new(interface: :redis, configuration: configuration)
+  ```
 
 ### Custom interfaces
 
@@ -84,7 +94,7 @@ In this example, every two seconds, if queue size is greater than ten elements, 
 
 Every methods use its own thread to watch the queue.
 
-Block exception are rescued and logged in order to not breaking the thread.
+Block exception are logged but not rescued.
 
 ### Log
 
@@ -95,3 +105,19 @@ Logger are initialized this way :
   ```
 
 Default logger redirect to STDOUT with warn level.
+
+## Tests
+
+Unit tests :
+
+  ```
+    bundle exec rake test
+  ```
+
+Integration tests :
+
+  ```
+    ruby -Ilib:test test/interface_integration.rb
+  ```
+
+Configuration for integration tests are set in before callback.
