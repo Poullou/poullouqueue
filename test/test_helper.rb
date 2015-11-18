@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/mini_test'
 require 'poullouqueue'
+require 'redis'
 
 module CustomInterface
 

@@ -14,7 +14,8 @@ module PoullouQueue
 
       def select_known_interface(name)
         {
-          in_memory: InMemory
+          in_memory: InMemory,
+          redis: Redis
         }[name]
       end
     end
