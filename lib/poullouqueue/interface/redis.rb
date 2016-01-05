@@ -1,5 +1,3 @@
-require 'redis'
-
 module PoullouQueue
   module Interface
     module Redis
